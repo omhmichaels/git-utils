@@ -21,7 +21,7 @@ function initGit(){
     git init;
     git add .
     git commit -m "$comment"
-    git remote add origin git@github.com:$username/$project.git
+    git remote add origin git@github.com-$username:$username/$project.git
     git push -u origin master
 }
 
