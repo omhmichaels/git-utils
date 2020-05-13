@@ -11,8 +11,8 @@
 project=${1:- ""}
 username=${2:- ""}
 comment=${2:- "Initialized $project"}
-
-
+private=${4-: ""}
+description=${5:""}
 
 # Initializes repo and pushes to master
 function initGit(){
@@ -22,7 +22,10 @@ function initGit(){
     git add .
     git commit -m "$comment"
     
-    git remote add origin git@github.com:$username/$project.git
+    ## REPLACED WITH HUB ##
+    #git remote add origin git@github.com:$username/$project.git
+    # Create remote github repo
+    hub create $private $description $project
     git push -u origin master
 }
 
