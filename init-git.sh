@@ -8,8 +8,8 @@
 
 
 
-project=${1:- "NO PTOJECT PROVIDED"}
-username=${2:- "NO USERNAME PROVIDED"}
+project=${1:- ""}
+username=${2:- ""}
 comment=${2:- "Initialized $project"}
 
 
@@ -21,6 +21,7 @@ function initGit(){
     git init;
     git add .
     git commit -m "$comment"
+    
     git remote add origin git@github.com:$username/$project.git
     git push -u origin master
 }
