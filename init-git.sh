@@ -12,12 +12,13 @@ project=${1:- ""}
 username=${2:- ""}
 comment=${2:- "Initialized $project"}
 private=${4-: ""}
-description=${5:""}
+
 
 # Initializes repo and pushes to master
 function initGit(){
     echo "Initializing and pushing to repo $project"
 
+    rm -rf .git/
     git init;
     git add .
     git commit -m "$comment"
@@ -25,10 +26,15 @@ function initGit(){
     ## REPLACED WITH HUB ##
     #git remote add origin git@github.com:$username/$project.git
     # Create remote github repo
-    hub create $private $description $project
+    hub create $private $comment $project
     git push -u origin master
 }
 
+function fixssh(){
+    local SSH_KEYPATH="~/.ssh/github-${username}"
+    ssh-add -D
+    ssh-add -K "${SSH_KEYPATH}"
+}
 
 function readme(){
     # Title
@@ -59,5 +65,6 @@ function readme(){
     printf "\n* *Examples*:" >> README.md;
 }
 
+fixssh;
 readme;
 initGit;
