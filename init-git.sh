@@ -24,7 +24,7 @@ function initGit(){
     git commit -m "$comment"
     
     ## REPLACED WITH HUB ##
-    #git remote add origin git@github.com:$username/$project.git
+    git remote add origin git@github.com:$username/$project.git
     # Create remote github repo
     hub create $private $comment $project
     git push -u origin master
