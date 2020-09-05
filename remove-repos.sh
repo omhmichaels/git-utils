@@ -6,16 +6,18 @@ repo_list=$(jq '.[] | .repo ' ${REPO_LIST})
 # Strip remaining quotes
 repo_list=$(echo $repo_list | xargs echo)  
 
-
-# Loop through and clone repos
-IFS=$' '
-for repo in $repo_list;
+IFS=" "
+for repo in $(echo "${repo_list}");
 do
-    printf "\nRemoving $repo\n"
-    # Strip Repo Name
-    repo=$(echo $repo | cut -d'/' -f5 | cut -d'.'  -f1)
-    rm -rf "${BASE_PATH}/${repo}"
+    printf "\n----------------\n"
+    printf "\nChecking for $repo\n"
+    # Strip repo http
+    repo_dir=$(echo $repo | cut -d/ -f5)
+    repo_dir=$(echo $repo_dir | cut -d. -f1)
+
+     [ -d "$repo_dir" ] && printf "\nDeleting$repo_dir \n" && rm -r $repo_dir || printf "\nWARNNG: Directory $repo_dir not found\n"  
+    # Test for repo. If not there clone
+ 
 done
 unset IFS
 
-printf "\nRemoved Repos\n"
