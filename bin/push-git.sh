@@ -10,7 +10,7 @@
 
 project=${1:- ""}
 username=${2:- ""}
-comment=${2:- "Initialized $project"}
+comment=${3:- "Initialized $project"}
 private=${4-: ""}
 
 

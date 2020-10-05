@@ -8,7 +8,7 @@
 PUSH_RETURN_VALUE=${1}
 
 # Check if TRUE 
-if [$PUSH_RETURN_VALUE];
+if ['true' == "$PUSH_RETURN_VALUE"];
 then 
     printf "\n---PUSH SUCCEEDED---\n"
     # 
